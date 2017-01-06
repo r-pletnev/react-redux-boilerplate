@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node index.js"
   },
+  "bin": {
+    "rrb" : "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/zeroed88/react-redux-boilerplate"
