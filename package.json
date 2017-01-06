@@ -1,0 +1,16 @@
+{
+  "name": "react-redux-bootstrap",
+  "version": "0.0.1",
+  "description": "This app created folders and files for redux, redux-form.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Roman",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "fs-extra": "^1.0.0"
+  }
+}

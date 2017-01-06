@@ -1,0 +1,12 @@
+{
+  "dependencies": [
+    "bootstrap",
+    "react-bootstrap",
+    "react-router@next",
+    "redux",
+    "react-redux",
+    "redux-logger",
+    "redux-thunk",
+    "redux-form"
+  ]
+}
