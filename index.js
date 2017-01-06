@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
-const path = require('path')
+const path = require('path');
+const spawn = require('cross-spawn');
 
 
 const SOURCE_DIR_NAME = 'src';
@@ -15,9 +16,6 @@ const DIRS_NAME = {
  UTILS_DIRNAME : 'utils',
  API_DIRNAME : 'api'
 }
-
-
-
 
 let program = require('commander')
   .version(require(path.resolve(APP_PATH, 'package.json')).version)
@@ -51,24 +49,26 @@ function applyTemplate(srcPath, templateName){
   fs.copy(templatePath, srcPath, (error)=>{
     if (error) return console.error(error);
   })
+
+  installPackages(templatePath);
 }
 
 
-// function isSafeToCreateProjectIn(root) {
-//   const validFiles = [
-//     '.DS_Store', 'Thumbs.db', '.git', '.gitignore', '.idea', 'README.md', 'LICENSE'
-//   ];
-//   return fs.readdirSync(root)
-//     .every(function(file) {
-//       return validFiles.indexOf(file) >= 0;
-//     });
-// }
+function installPackages(templatePath){
+  const deps = require(path.resolve(templatePath, 'template.json')).dependencies;
+  deps.forEach((pack)=>{
+    install(pack);
+  })
+}
 
+function install(packageName){
+  const args = ['install', '--save', packageName];
+  const child = spawn('npm', args, {stdio: 'inherit'});
+}
 
 function createDir(path){
   fs.mkdirSync(path)
 }
-
 
 function pathExist(checkingPath){
   return fs.existsSync(checkingPath);
