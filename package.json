@@ -1,13 +1,13 @@
 {
   "name": "rrb",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Boilerplate for redux, redux-form. Use after create-react-app",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "bin": {
-    "rrb" : "./index.js"
+    "rrb" : "./.bin/rrb"
   },
   "repository": {
     "type": "git",

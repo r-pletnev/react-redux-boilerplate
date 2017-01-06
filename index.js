@@ -1,4 +1,3 @@
-#! /usr/bin/env node  
 
 const fs = require('fs-extra');
 const path = require('path');
@@ -24,10 +23,6 @@ let program = require('commander')
   .option('--src-dir <src_dir>', 'name for source folder')
   .parse(process.argv)
 
-
-createProject();
-
-
 function createProject(){
   const sourceDirectory = path.resolve(program.src_dir || SOURCE_DIR_NAME);
   if(!pathExist(sourceDirectory)){
@@ -47,8 +42,9 @@ function createProject(){
 
 
 function applyTemplate(srcPath, templateName){
-  const templatePath = path.resolve(APP_PATH, './templates', templateName || DEFAULT_TEMPLATE, 'src');
-  fs.copy(templatePath, srcPath, (error)=>{
+  const templatePath = path.resolve(APP_PATH, './templates', templateName || DEFAULT_TEMPLATE);
+  const templateSrcPath = path.resolve(templatePath, 'src');
+  fs.copy(templateSrcPath, srcPath, (error)=>{
     if (error) return console.error(error);
   })
 
@@ -75,3 +71,5 @@ function createDir(path){
 function pathExist(checkingPath){
   return fs.existsSync(checkingPath);
 }
+
+module.export = createProject();
